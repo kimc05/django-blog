@@ -1,9 +1,10 @@
-{# mysite/templates/base.html #}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html>
   <head>
     <title>Christine's Django Blog</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'django_blog.css' %}">
   </head>
   <body>
     <div id="container">
