@@ -1,6 +1,6 @@
 {% extends "base.html" %}{% block content %}
-  <h1>Recent Posts</h1>
-  {% comment %} here is where the query happens {% endcomment %}
+  <h1>Christine's blog = Recent Posts</h1>
+
   {% for post in post_list %}
   <div class="post">
     <h2><a href="{% url 'blog_detail' post.pk %}">{{ post }}</a></h2>
