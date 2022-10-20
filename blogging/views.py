@@ -21,11 +21,13 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blogging/detail.html'
+    
 
-    def detail_view(self, request, post_id):
+    def get(self, request, *args, **kwargs):
         published = Post.objects.exclude(published_date__exact=None)
         try:
-            post = published.get(pk=post_id)
+            post = published.get(pk=kwargs['pk'])
+
         except Post.DoesNotExist:
             raise Http404
         context = {'post': post}
