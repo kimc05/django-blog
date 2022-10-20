@@ -8,27 +8,25 @@ from django.views.generic.detail import DetailView
 
 class PostListView(ListView):
     model = Post
-    template_name = 'blogging/list.html'
+    template_name = "blogging/list.html"
 
     def get(self, request):
         published = Post.objects.exclude(published_date__exact=None)
-        posts = published.order_by('-published_date')
-        context = {'post_list': posts}
-        return render(request, 'blogging/list.html', context)
-
+        posts = published.order_by("-published_date")
+        context = {"post_list": posts}
+        return render(request, "blogging/list.html", context)
 
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'blogging/detail.html'
-    
+    template_name = "blogging/detail.html"
 
     def get(self, request, *args, **kwargs):
         published = Post.objects.exclude(published_date__exact=None)
         try:
-            post = published.get(pk=kwargs['pk'])
+            post = published.get(pk=kwargs["pk"])
 
         except Post.DoesNotExist:
             raise Http404
-        context = {'post': post}
-        return render(request, 'blogging/detail.html', context)
+        context = {"post": post}
+        return render(request, "blogging/detail.html", context)
